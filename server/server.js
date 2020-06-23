@@ -3,12 +3,16 @@ app = express();
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const PORT = process.env.PORT || 3000;
+
 const apiRouter = require('./routes/apiRouter');
+
+require('dotenv').config()
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
 app.use(express.static("dist"));
+app.use(cookieParser());
 
 app.get("/", (req, res) => {
   res.status(200).sendFile(path.resolve(__dirname, "../src/index.html"));
