@@ -1,9 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import "../styles/App.css";
 
 function App() {
   return (
-    <div>open sorcerer</div>
-  )
+    <div>
+      open sorcererer
+      <img src="fairy.png" />
+    </div>
+  );
 }
 
 export default App;

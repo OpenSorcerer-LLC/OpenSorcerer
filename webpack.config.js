@@ -1,47 +1,43 @@
-const path = require('path');
-
+const path = require("path");
 
 module.exports = {
-  entry: './src/app.js',
+  entry: "./src/app.js",
   mode: process.env.NODE_ENV,
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/dist',
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js",
+  },
+  resolve: {
+    extensions: [".js", ".jsx"],
   },
   module: {
     rules: [
       {
-        test: /\.jsx?/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-react', '@babel/preset-env']
-        }
-      },
-      {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
-      },
-      {
-        test: /\.(png|jpe?g|gif)$/i,
-        use: [
-          {
-            loader: 'file-loader',
+        test: /\.jsx?$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+            plugins: ["@babel/plugin-proposal-class-properties"],
           },
-        ],
+        },
       },
-    ]
-  },
-  resolve: {
-    extensions: ['.js', '.jsx'],
+      {
+        test: /\.s?css$/,
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(jpg|svg|png)$/i,
+        loader: "url-loader",
+      },
+    ],
   },
   devServer: {
-    port: 8080,
-    historyApiFallback: true,
-    publicPath: '/dist',
+    contentBase: path.resolve(__dirname, "dist"),
+    publicPath: "/",
     proxy: {
-      '/': 'http://localhost:3000/',
-    }
-  }
-}
+      "/": "http://localhost:3000",
+    },
+  },
+};
