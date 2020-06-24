@@ -24,8 +24,7 @@ app.get(
   authController.getUserInfo,
   (req, res) => {
     if (process.env.NODE_ENV === 'development') {
-      // console.log("WE ARE IN DEV ENVIRONMENT")
-      res.redirect('localhost:8080');
+      res.redirect('/');
     } else {
       res.sendFile(path.resolve(__dirname, '../src/index.html'));
     }
