@@ -1,0 +1,66 @@
+.repo_textbox {
+  position: relative;
+  left: 40px;
+  top: -210px;
+  border: none;
+  font-size: 17px;
+  height: 154px;
+  font-weight: bold;
+}
+
+.repo_description {
+  position: relative;
+  display: inline-block;
+  transform: translateX(40px) translateY(-210px);
+  font-size: 17px;
+  height: 154px;
+  width: 215px;
+  border: none;
+  font-weight: bold;
+}
+
+.repo_button {
+  position: relative;
+  display: inline-block;
+  width: 130px;
+  top: -210px;
+  left: 85px;
+  text-align: center;
+  color: rgb(0, 0, 255);
+  font-weight: bold;
+}
+
+.repo {
+  height: 275px;
+  width: 299px;
+}
+.repo_title {
+  width: 299px;
+  text-align: center;
+  color: white;
+}
+.repo_issues_count {
+  display: inline-block;
+  text-align: center;
+  color: rgb(255, 0, 255);
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.repo_issues {
+  display: inline-block;
+  text-align: center;
+  color: rgb(127, 0, 255);
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.repo_issues_container {
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  top: -220px;
+  left: 52px;
+  width: 190px;
+}
