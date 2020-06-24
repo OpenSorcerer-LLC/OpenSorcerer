@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 
 module.exports = {
   entry: "./src/app.js",
@@ -24,7 +25,7 @@ module.exports = {
         },
       },
       {
-        test: /\.s?css$/,
+        test: /css$/i,
         use: ["style-loader", "css-loader"],
       },
       {
@@ -35,7 +36,7 @@ module.exports = {
   },
   devServer: {
     contentBase: path.resolve(__dirname, "dist"),
-    publicPath: "/",
+    publicPath: "/dist",
     proxy: {
       "/": "http://localhost:3000",
     },
