@@ -4,8 +4,13 @@ import "../styles/Repos.css";
 
 function Repos(props) {
   return (
-    <div className="repos">
-      <Repo input={!true} />
+    <div className="repos_container">
+      <div className="repos_grid">
+        <Repo input={!true} />
+        <Repo input={!true} />
+        <Repo input={!true} />
+        <Repo input={!true} />
+      </div>
     </div>
   );
 }
