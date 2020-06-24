@@ -1,5 +1,4 @@
 const path = require("path");
-const webpack = require("webpack");
 
 module.exports = {
   entry: "./src/app.js",
@@ -36,7 +35,7 @@ module.exports = {
   },
   devServer: {
     contentBase: path.resolve(__dirname, "dist"),
-    publicPath: "/dist",
+    publicPath: "/",
     proxy: {
       "/": "http://localhost:3000",
     },
