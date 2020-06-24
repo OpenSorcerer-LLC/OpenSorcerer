@@ -1,0 +1,28 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+  float: left;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.menu_button {
+  display: flex;
+  background-color: rgb(85, 85, 85);
+  font-size: 30px;
+  padding-left: 32px;
+  height: 70px;
+  color: rgb(255, 0, 255);
+  font-weight: bold;
+  align-items: center;
+}
+
+.menu_button:hover {
+  background-color: yellow;
+  cursor: pointer;
+}
+
+.menu_button_icon {
+  margin-left: 10px;
+  margin-right: 20px;
+}

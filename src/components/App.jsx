@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import Box from './box.jsx'
-import TestComponent from './testComponent.jsx'
+import React from "react";
+import Menu from "./Menu";
+import Outro from "./Outro";
+import "../styles/App.css";
 
-export default class App extends Component {
-  render() {
-    return (
-      <div id='container'>
-        <div>open sorcererrrrrrrrrr</div>
-        <TestComponent />
-        <Box />
-      </div>
-    )
-  }
+function App() {
+  return (
+    <>
+      <Menu login={false} />
+      <Outro />
+    </>
+  );
 }
+
+export default App;
