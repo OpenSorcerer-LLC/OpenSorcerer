@@ -1,26 +1,27 @@
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: "./src/app.js",
   mode: process.env.NODE_ENV,
   output: {
-    path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
+    path: path.resolve(__dirname, "dist"),
+    publicPath: "/",
   },
-  resolve: {
-    extensions: [".js", ".jsx"],
-  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./src/index.html",
+    }),
+  ],
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        exclude: /(node_modules)/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"],
-            plugins: ["@babel/plugin-proposal-class-properties"],
-          },
+        test: /\.jsx?/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+        options: {
+          presets: ["@babel/preset-react", "@babel/preset-env"],
         },
       },
       {
@@ -28,16 +29,23 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.(jpg|svg|png)$/i,
-        loader: "url-loader",
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: "file-loader",
+          },
+        ],
       },
     ],
+  },
+  resolve: {
+    extensions: [".js", ".jsx"],
   },
   devServer: {
     contentBase: path.resolve(__dirname, "dist"),
     publicPath: "/",
     proxy: {
-      "/": "http://localhost:3000",
+      "/": "http://localhost:3000/",
     },
   },
 };

@@ -8,6 +8,5 @@ body {
   font-style: italic;
   font-weight: bold;
   color: rgb(255, 0, 255);
-  margin: 0;
-  transform: rotate(0.5deg);
+  margin: 0px;
 }
