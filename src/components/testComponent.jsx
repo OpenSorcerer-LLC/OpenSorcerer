@@ -8,7 +8,7 @@ export default class TestComponent extends Component {
   render() {
     return (
       <div>
-        <p>testComponent in the mixxxxxx</p>
+        <p>testComponent in the mix</p>
       </div>
     )
   }
