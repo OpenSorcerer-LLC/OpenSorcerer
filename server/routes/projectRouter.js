@@ -14,8 +14,10 @@ router.get('/project/:project_id',
 router.post('/project',
   projectController.addProject,
   (req, res) => res.status(200).json());
-  
+
 router.put('/project')
+
+router.delete('/project')
 
 
 module.exports = router;

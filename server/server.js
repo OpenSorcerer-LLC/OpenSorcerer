@@ -4,9 +4,9 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const PORT = process.env.PORT || 3000;
 
-const apiRouter = require('./routes/apiRouter');
-
 require('dotenv').config()
+
+const projectRouter = require('./routes/projectRouter');
 
 
 app.use(express.json());
@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 app.use('/verify',
 (req, res) => res.redirect('/'));
 
-app.use('/api', apiRouter);
+app.use('/api', projectRouter);
 
 app.use((err, req, res, next) => {
   const defaultErr = {
