@@ -4,7 +4,7 @@
   color: rgb(255, 0, 255);
   font-size: 90px;
   margin: 0px;
-  transform: translateY(-20px) translateX(60px);
+  transform: translateY(-20px) translateX(60px) rotate(0.5deg);
 }
 
 .outro_big_star {
