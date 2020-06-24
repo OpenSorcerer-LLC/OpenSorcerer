@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack')
 
 
 module.exports = {
@@ -20,8 +21,8 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        test: /css$/i,
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
@@ -37,8 +38,7 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   devServer: {
-    port: 8080,
-    historyApiFallback: true,
+    contentBase: path.resolve(__dirname, 'dist'),
     publicPath: '/dist',
     proxy: {
       '/': 'http://localhost:3000/',
