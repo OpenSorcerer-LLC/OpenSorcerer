@@ -23,7 +23,12 @@ app.get(
   authController.getAccessToken,
   authController.getUserInfo,
   (req, res) => {
-    res.redirect('/');
+    if (process.env.NODE_ENV === 'development') {
+      // console.log("WE ARE IN DEV ENVIRONMENT")
+      res.redirect('localhost:8080');
+    } else {
+      res.sendFile(path.resolve(__dirname, '../src/index.html'));
+    }
   }
 );
 
