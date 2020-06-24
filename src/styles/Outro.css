@@ -1,10 +1,22 @@
-.outro {
-  float: right;
-}
-
 .outro_title {
   font-style: italic;
   font-weight: bold;
   color: rgb(255, 0, 255);
-  font-size: 120px;
+  font-size: 90px;
+  margin: 0px;
+  transform: translateY(-20px) translateX(60px);
+}
+
+.outro_big_star {
+  margin-left: 25%;
+  transform: translateY(-28px);
+}
+
+.outro_small_star {
+  margin-left: 10px;
+  transform: translateY(-8px);
+}
+
+.outro_mascot {
+  transform: translateX(16px) translateY(30px);
 }
