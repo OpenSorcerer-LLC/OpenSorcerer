@@ -1,17 +1,18 @@
 .repo_textbox {
-  position: relative;
+  position: absolute;
+  top: 122px;
   left: 40px;
-  top: -210px;
   border: none;
   font-size: 17px;
-  height: 154px;
+  height: 150px;
   font-weight: bold;
 }
 
 .repo_description {
-  position: relative;
+  position: absolute;
+  top: 122px;
+  left: 40px;
   display: inline-block;
-  transform: translateX(40px) translateY(-210px);
   font-size: 17px;
   height: 154px;
   width: 215px;
@@ -20,10 +21,10 @@
 }
 
 .repo_button {
-  position: relative;
+  position: absolute;
   display: inline-block;
   width: 130px;
-  top: -210px;
+  top: 320px;
   left: 85px;
   text-align: center;
   color: rgb(0, 0, 255);
@@ -32,13 +33,14 @@
 
 .repo {
   height: 275px;
-  width: 299px;
+  width: 343px;
 }
 .repo_title {
   width: 299px;
   text-align: center;
   color: white;
 }
+
 .repo_issues_count {
   display: inline-block;
   text-align: center;
@@ -56,11 +58,11 @@
 }
 
 .repo_issues_container {
-  position: relative;
+  position: absolute;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  top: -220px;
+  top: 280px;
   left: 52px;
   width: 190px;
 }

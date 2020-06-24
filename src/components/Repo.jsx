@@ -1,15 +1,6 @@
 import React, { useState } from "react";
 import "../styles/Repo.css";
 
-/* 
-      <textarea
-        className="repo_textbox"
-        placeholder={textPlaceHolder}
-        value={description}
-        onChange={handleTextAreaInput}
-      ></textarea>
-      <label className="repo_description">{textPlaceHolder}</label>
-*/
 /* repoTitle: string, description: string, buttonTitle: string, buttonCallback: function, input: boolean */
 function Repo(props) {
   const textPlaceHolder = "Please include the description in here.";
