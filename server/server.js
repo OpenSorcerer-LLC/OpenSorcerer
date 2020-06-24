@@ -3,15 +3,15 @@ app = express();
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const PORT = process.env.PORT || 3000;
+
 require('dotenv').config()
 
-const apiRouter = require('./routes/apiRouter');
-
+const projectRouter = require('./routes/projectRouter');
 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("dist"));
+app.use(express.static("/src"));
 app.use(cookieParser());
 
 app.get("/", (req, res) => {
@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 app.use('/verify',
   (req, res) => res.redirect('/'));
 
-app.use('/api', apiRouter);
+app.use('/api', projectRouter);
 
 app.use((err, req, res, next) => {
   const defaultErr = {
