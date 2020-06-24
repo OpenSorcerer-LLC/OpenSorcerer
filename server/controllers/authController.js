@@ -31,6 +31,7 @@ authController.getUserInfo = (req, res, next) => {
   })
     .then((res) => res.json())
     .then((data) => {
+      console.log(data)
       res.locals.userInfo = data;
       return next();
     })

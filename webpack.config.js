@@ -45,7 +45,7 @@ module.exports = {
     contentBase: path.resolve(__dirname, "dist"),
     publicPath: "/",
     proxy: {
-      "/": "http://localhost:3000/",
+      "/callback": "http://localhost:3000/",
     },
   },
 };
