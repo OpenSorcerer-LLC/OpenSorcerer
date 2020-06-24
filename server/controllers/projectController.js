@@ -3,8 +3,21 @@ const db = require('../database');
 
 const projectController = {};
 
-projectController.getProjects = (req, res, next) => {
-  return next();
+projectController.getUserProjects = (req, res, next) => {
+  let query = `SELECT * FROM projects WHERE Maintainer_id = $1;`;
+  let params = [req.params.user_id];
+  db.query(query, params)
+    .then(data => {
+      res.locals.projects = data.rows;
+      return next();
+    })
+    .catch(err => {
+      console.log(err);
+      return next({
+        log: 'Error retrieving user\'s projects',
+        message: { err: 'projectController.getUserProjects: Error retrieving projects' }
+      });
+    })
 }
 
 projectController.getProjectDetails = (req, res, next) => {
