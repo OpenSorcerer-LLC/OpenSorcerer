@@ -1,0 +1,10 @@
+.outro {
+  float: right;
+}
+
+.outro_title {
+  font-style: italic;
+  font-weight: bold;
+  color: rgb(255, 0, 255);
+  font-size: 120px;
+}

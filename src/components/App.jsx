@@ -1,7 +1,6 @@
 import React from "react";
 import Menu from "./Menu";
 import Outro from "./Outro";
-import "../styles/Reset.css";
 import "../styles/App.css";
 
 function App() {
