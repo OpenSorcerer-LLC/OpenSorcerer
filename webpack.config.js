@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 
 module.exports = {
@@ -7,8 +8,12 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/dist',
+    publicPath: '/',
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
+    })],
   module: {
     rules: [
       {
@@ -20,8 +25,8 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        test: /css$/i,
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
@@ -37,9 +42,8 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   devServer: {
-    port: 8080,
-    historyApiFallback: true,
-    publicPath: '/dist',
+    contentBase: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
     proxy: {
       '/': 'http://localhost:3000/',
     }

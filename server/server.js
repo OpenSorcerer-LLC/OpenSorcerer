@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 });
 
 app.use('/verify',
-(req, res) => res.redirect('/'));
+  (req, res) => res.redirect('/'));
 
 app.use('/api', projectRouter);
 
