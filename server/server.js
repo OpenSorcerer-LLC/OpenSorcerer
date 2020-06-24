@@ -3,10 +3,10 @@ app = express();
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const PORT = process.env.PORT || 3000;
+require('dotenv').config()
 
 const apiRouter = require('./routes/apiRouter');
 
-require('dotenv').config()
 
 
 app.use(express.json());
@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 });
 
 app.use('/verify',
-(req, res) => res.redirect('/'));
+  (req, res) => res.redirect('/'));
 
 app.use('/api', apiRouter);
 

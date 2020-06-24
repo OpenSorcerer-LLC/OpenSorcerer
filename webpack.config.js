@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack')
 
 
 module.exports = {
@@ -37,8 +38,7 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   devServer: {
-    port: 8080,
-    historyApiFallback: true,
+    contentBase: path.resolve(__dirname, 'dist'),
     publicPath: '/dist',
     proxy: {
       '/': 'http://localhost:3000/',
