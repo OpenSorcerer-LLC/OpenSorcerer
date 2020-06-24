@@ -13,11 +13,11 @@
 }
 
 .outro_big_star {
-  transform: translateY(-28px);
+  transform: translateY(-28px) translateX(302px);
 }
 
 .outro_small_star {
-  transform: translateY(-8px);
+  transform: translateY(-8px) translateX(302px);
 }
 .outro_mascot {
   transform: translateX(297px) translateY(25px);
