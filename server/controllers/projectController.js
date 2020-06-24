@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-cosnt db = require('../database');
+const db = require('../database');
 
 const projectController = {};
 
@@ -52,7 +52,7 @@ projectController.verifyProject = (req, res, next) => {
       .then(data => {
         res.locals.id = data.id;
         res.locals.maintainer = data.owner.id;
-        const params = [res.local.id, res.locals.maintainer, res.locals.repo, res.locals.description];
+        const params = [res.locals.id, res.locals.maintainer, res.locals.repo, res.locals.description];
         const query = `INSERT INTO projects (Id, Maintainer_id, Repo_name, Description) VALUES ($1, $2, $3, $4);`;
         db.query(query, params)
           .then(data => next())

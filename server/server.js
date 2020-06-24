@@ -11,7 +11,7 @@ const projectRouter = require('./routes/projectRouter');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("dist"));
+app.use(express.static("/src"));
 app.use(cookieParser());
 
 app.get("/", (req, res) => {

@@ -12,6 +12,7 @@ router.get('/project/:project_id',
   (req, res) => res.status(200).json());
 
 router.post('/project',
+  projectController.verifyProject,
   projectController.addProject,
   (req, res) => res.status(200).json());
 
