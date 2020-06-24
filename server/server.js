@@ -7,8 +7,6 @@ require('dotenv').config()
 
 const apiRouter = require('./routes/apiRouter');
 
-
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("dist"));

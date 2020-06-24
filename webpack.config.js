@@ -1,5 +1,5 @@
 const path = require('path');
-const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 
 module.exports = {
@@ -8,8 +8,12 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/dist',
+    publicPath: '/',
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
+    })],
   module: {
     rules: [
       {
@@ -39,7 +43,7 @@ module.exports = {
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
-    publicPath: '/dist',
+    publicPath: '/',
     proxy: {
       '/': 'http://localhost:3000/',
     }

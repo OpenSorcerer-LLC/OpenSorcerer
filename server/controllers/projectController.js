@@ -16,7 +16,7 @@ projectController.getProjectDetails = (req, res, next) => {
     .catch(err => {
       return next({
         log: 'Error fetching project details',
-        message: {err: 'projectController.getProjectDetails: ERROR'}
+        message: { err: 'projectController.getProjectDetails: ERROR' }
       })
     })
 }
