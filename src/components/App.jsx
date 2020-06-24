@@ -6,7 +6,7 @@ export default class App extends Component {
   render() {
     return (
       <div id='container'>
-        <div>open sorcerer</div>
+        <div>open sorcererrrrrrrrrr</div>
         <TestComponent />
         <Box />
       </div>
