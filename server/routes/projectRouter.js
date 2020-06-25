@@ -34,7 +34,7 @@ router.post('/projects/contribute',
 
 // deleting a repo entirely
 router.delete('/project',
-  projectController.verifyProject,
+  // projectController.verifyProject,
   projectController.deleteProject,
   (req, res) => res.status(200));
 
