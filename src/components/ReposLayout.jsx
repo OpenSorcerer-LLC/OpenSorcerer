@@ -5,12 +5,7 @@ import "../styles/ReposLayout.css";
 function ReposLayout(props) {
   return (
     <div className="repos_container">
-      <div className="repos_grid">
-        <Repo input={!true} />
-        <Repo input={!true} />
-        <Repo input={!true} />
-        <Repo input={!true} />
-      </div>
+      <div className="repos_grid">{props.repos}</div>
     </div>
   );
 }

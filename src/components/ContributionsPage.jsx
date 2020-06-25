@@ -1,7 +1,7 @@
 import React from "react";
 import ReposLayout from "./ReposLayout";
 
-function Repos() {
+function ContributionsPage() {
   return (
     <>
       <ReposLayout />
@@ -9,4 +9,4 @@ function Repos() {
   );
 }
 
-export default Repos;
+export default ContributionsPage;

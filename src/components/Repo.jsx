@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../styles/Repo.css";
 
 /* 
+    id: integer,
     repoTitle: string, 
     description: string, 
     buttonTitle: string, 
@@ -18,9 +19,17 @@ function Repo(props) {
       setDescription(description + e.nativeEvent.data);
   }
 
+  let button;
+
+  switch (props.buttonType) {
+    case "CONTRIBUTE":
+      button = <span className="repo_button">CONTRIBUTE</span>;
+      break;
+  }
+
   return (
     <div className="repo">
-      <h2 className="repo_title">D3</h2>
+      <h2 className="repo_title">{props.name}</h2>
       <img src="seventagram.png" />
       {props.input ? (
         <textarea
@@ -31,14 +40,14 @@ function Repo(props) {
         ></textarea>
       ) : (
         <>
-          <label className="repo_description">{textPlaceHolder}</label>
+          <label className="repo_description">{props.description}</label>
           <div className="repo_issues_container">
             <label className="repo_issues_count">80000</label>
             <label className="repo_issues">Issues</label>
           </div>
         </>
       )}
-      <span className="repo_button">blah</span>
+      {button}
     </div>
   );
 }

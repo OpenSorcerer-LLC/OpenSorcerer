@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Menu from "./Menu";
 import Outro from "./Outro";
-import ReposLayout from "./ReposLayout";
+import ReposPage from "./ReposPage";
 import "../styles/App.css";
 
 function App(props) {
@@ -13,9 +13,14 @@ function App(props) {
         <Menu />
         <Outro />
         <Switch>
-          <Route path="/contributions">sdfsdf</Route>
-          <Route path="/myrepos">durran</Route>
-          <Route path="/"></Route>
+          <Route path="/contributions"></Route>
+          <Roate path="/myrepos/add">
+            <RepoAddPage />
+          </Roate>
+          <Route path="/myrepos"></Route>
+          <Route path="/">
+            <ReposPage />
+          </Route>
         </Switch>
       </Router>
     </>
