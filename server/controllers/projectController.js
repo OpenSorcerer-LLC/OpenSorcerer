@@ -4,7 +4,7 @@ const db = require('../database');
 const projectController = {};
 
 projectController.getProjects = (req, res, next) => {
-  let query =  `SELECT * FROM projects;`;
+  let query = `SELECT * FROM projects;`;
   db.query(query)
     .then(data => {
       res.locals.projects = data.rows;
@@ -71,37 +71,39 @@ projectController.verifyProject = (req, res, next) => {
         console.log(err)
         return next({
           log: 'Error verifying repo',
-          message: { err: 'projectController.verifyProject: error verifying repo'}
+          message: { err: 'projectController.verifyProject: error verifying repo' }
         })
       })
-      
-    }
-      
   }
+}
 
-  projectController.addProject = (req, res, next) => {
-    console.log(`https://api.github.com/repos/${res.locals.org}/${res.locals.repo}`)
-    fetch(`https://api.github.com/repos/${res.locals.org}/${res.locals.repo}`)
-      .then(data => data.json())
-      .then(data => {
-        res.locals.id = data.id;
-        const params = [res.locals.id, res.locals.userid, res.locals.repo, res.locals.description];
-        const query = `INSERT INTO projects (Id, Maintainer_id, Repo_name, Description) VALUES ($1, $2, $3, $4);`;
-        db.query(query, params)
-          .then(data => next())
-          .catch(err => {
-            console.log(err)
-            return next({
+projectController.addProject = (req, res, next) => {
+  console.log(`https://api.github.com/repos/${res.locals.org}/${res.locals.repo}`)
+  fetch(`https://api.github.com/repos/${res.locals.org}/${res.locals.repo}`)
+    .then(data => data.json())
+    .then(data => {
+      res.locals.id = data.id;
+      const params = [res.locals.id, res.locals.userid, res.locals.repo, res.locals.description];
+      const query = `INSERT INTO projects (Id, Maintainer_id, Repo_name, Description) VALUES ($1, $2, $3, $4);`;
+      db.query(query, params)
+        .then(data => next())
+        .catch(err => {
+          console.log(err)
+          return next({
             log: 'Error adding repo',
             message: { err: 'projectController.addProject: error adding repo' }
           })
         })
-        })
         .catch(err => next({
-          log: 'Error fetching repo',
-          message: { err: 'projectController.addProject: error fetching repo' }
+          log: 'Error adding repo',
+          message: { err: 'projectController.addProject: error adding repo' }
         }))
-  }
+    })
+    .catch(err => next({
+      log: 'Error fetching repo',
+      message: { err: 'projectController.addProject: error fetching repo' }
+    }))
+}
 
 
 module.exports = projectController;
