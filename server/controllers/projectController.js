@@ -8,6 +8,7 @@ projectController.getProjects = (req, res, next) => {
   db.query(query)
     .then(data => {
       res.locals.projects = data.rows;
+      console.log(res.locals.projects)
       return next();
     })
     .catch(err => {
@@ -24,7 +25,7 @@ projectController.getUserProjects = (req, res, next) => {
   let params = [req.params.user_id];
   db.query(query, params)
     .then(data => {
-      res.locals.projects = data.rows;
+      res.locals.projects = { owner: data.rows };
       return next();
     })
     .catch(err => {
@@ -33,6 +34,40 @@ projectController.getUserProjects = (req, res, next) => {
         log: 'Error retrieving user\'s projects',
         message: { err: 'projectController.getUserProjects: Error retrieving projects' }
       });
+    })
+}
+
+projectController.getContributingProjects = (req, res, next) => {
+  let query = `SELECT contributing.*, people.Github_handle, projects.Maintainer_id, projects.repo_name, projects.Description, projects.Created_At
+    FROM contributing WHERE Contributor_id = $1
+    LEFT JOIN people ON people.Id = contributing.Contributor_id
+    LEFT JOIN projects ON projects.Id = contributing.project_id;`;
+  let params = [req.params.user_id];
+  db.query(query, params)
+    .then(data => {
+      res.locals.projects.contributor = data.rows;
+      return next();
+    })
+    .catch(err => {
+      console.log(err);
+      return next({
+        log: 'Error fetching contributing projects',
+        message: { err: 'projectController.getContributingProjects: ERROR' }
+      })
+    })
+}
+
+projectController.bookmarkProject = (req, res, next) => {
+  let query =  `INSERT INTO contributing (Contributor_id, Project_id) VALUES ($1, $2);`;
+  let params = Object.values(req.body);
+  db.query(query, params)
+    .then(data => next())
+    .catch(err => {
+      console.log(err);
+      return next({
+        log: 'Error bookmarking project',
+        message: { err: 'projectController.bookmarkProject: ERROR' }
+      })
     })
 }
 
@@ -103,6 +138,6 @@ projectController.addProject = (req, res, next) => {
       log: 'Error fetching repo',
       message: { err: 'projectController.addProject: error fetching repo' }
     }))
-}
+  }
 
 module.exports = projectController;
