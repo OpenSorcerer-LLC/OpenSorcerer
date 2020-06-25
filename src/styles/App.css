@@ -2,4 +2,26 @@ body {
   background-color: rgb(32, 33, 46);
   font-family: Helvetica;
   margin: 0;
+  color: rgb(255, 0, 255);
+}
+
+a {
+  text-decoration: none;
+}
+
+.button_add_repo {
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(255, 0, 255);
+}
+
+.repo_link {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.repo_link_input {
+  width: 450px;
+  font-size: 24px;
+  opacity: 70%;
 }

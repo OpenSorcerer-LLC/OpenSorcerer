@@ -1,4 +1,6 @@
 import React from "react";
+import { useCookies } from "react-cookie";
+import { Link, BrowserRouter as Router } from "react-router-dom";
 import "../styles/Menu.css";
 
 function LoginButton() {
@@ -15,43 +17,48 @@ function LoginButton() {
 
 function ContributionButton() {
   return (
-    <span className="menu_button menu_button--contributions">
+    <Link
+      to="/contributions"
+      className="menu_button menu_button--contributions"
+    >
       CONTRIBUTIONS
       <img className="menu_button_icon" src="icon_contribution.png" />
-    </span>
+    </Link>
   );
 }
 
 function MyReposButton() {
   return (
-    <span className="menu_button menu_button--myrepos">
+    <Link to="/myrepos" className="menu_button menu_button--myrepos">
       MY REPOS
       <img className="menu_button_icon" src="icon_myrepos.png" />
-    </span>
+    </Link>
   );
 }
 
 function ReposButton() {
   return (
-    <span className="menu_button menu_button--repos">
+    <Link to="/" className="menu_button menu_button--repos">
       REPOS
       <img className="menu_button_icon" src="icon_repos.png" />
-    </span>
+    </Link>
   );
 }
 
 function Menu(props) {
+  const [cookies] = useCookies([]);
+
   return (
     <div className="menu">
-      {props.login ? (
+      {cookies.token === undefined || cookies.token.error !== undefined ? (
         <LoginButton />
       ) : (
-          <>
-            <ContributionButton />
-            <MyReposButton />
-            <ReposButton />
-          </>
-        )}
+        <>
+          <ContributionButton />
+          <MyReposButton />
+          <ReposButton />
+        </>
+      )}
     </div>
   );
 }

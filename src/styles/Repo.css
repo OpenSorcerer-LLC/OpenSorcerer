@@ -31,6 +31,10 @@
   font-weight: bold;
 }
 
+.repo_button:hover {
+  cursor: pointer;
+}
+
 .repo {
   position: relative;
   height: 343px;
@@ -38,6 +42,7 @@
 }
 .repo_title {
   width: 299px;
+  height: 28px;
   text-align: center;
   color: rgb(155, 69, 241);
 }

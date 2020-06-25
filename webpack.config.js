@@ -46,6 +46,8 @@ module.exports = {
     publicPath: "/",
     proxy: {
       "/callback": "http://localhost:3000/",
+      "/": "http://localhost:3000/",
     },
+    historyApiFallback: true,
   },
 };

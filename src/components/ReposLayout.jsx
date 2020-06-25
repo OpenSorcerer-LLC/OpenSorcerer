@@ -1,16 +1,18 @@
 import React from "react";
-import Repo from "./Repo";
 import "../styles/ReposLayout.css";
+import { Link } from "react-router-dom";
 
 function ReposLayout(props) {
   return (
     <div className="repos_container">
-      <div className="repos_grid">
-        <Repo input={!true} />
-        <Repo input={!true} />
-        <Repo input={!true} />
-        <Repo input={!true} />
-      </div>
+      {props.addRepo ? (
+        <Link className="button_add_repo" to="/myrepos/add">
+          ADD REPO
+        </Link>
+      ) : (
+        ""
+      )}
+      <div className="repos_grid">{props.repos}</div>
     </div>
   );
 }
