@@ -4,6 +4,7 @@
   "description": "Find great open source projects to contribute to at all levels",
   "main": "src/app.js",
   "dependencies": {
+    "babel-jest": "^26.1.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -16,14 +17,19 @@
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
-    "url-loader": "^4.1.0",
     "@babel/core": "^7.10.3",
     "@babel/preset-env": "^7.10.3",
     "@babel/preset-react": "^7.10.1",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.6.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "enzyme-to-json": "^3.5.0",
     "html-webpack-plugin": "^4.3.0",
+    "jest": "^26.1.0",
+    "react-test-renderer": "^16.13.1",
     "style-loader": "^1.2.1",
+    "url-loader": "^4.1.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-middleware": "^3.7.2",
@@ -33,7 +39,8 @@
     "start": "NODE_ENV=production nodemon server/server.js",
     "build": "NODE_ENV=production webpack",
     "dev": "NODE_ENV=development webpack-dev-server --open & NODE_ENV=development nodemon server/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -44,5 +51,13 @@
   "bugs": {
     "url": "https://github.com/OpenSorcerer-LLC/OpenSorcerer/issues"
   },
-  "homepage": "https://github.com/OpenSorcerer-LLC/OpenSorcerer#readme"
+  "homepage": "https://github.com/OpenSorcerer-LLC/OpenSorcerer#readme",
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/__tests__/setup/setupEnzyme.js"
+    ],
+    "testPathIgnorePatterns": [
+      "__tests__/setup/"
+    ]
+  }
 }
