@@ -1,11 +1,12 @@
 express = require('express');
 app = express();
+require('dotenv').config();
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const PORT = process.env.PORT || 3000;
 const authController = require('./controllers/authController');
+const userController = require('./controllers/userController')
 
-require('dotenv').config();
 
 const projectRouter = require('./routes/projectRouter');
 
@@ -22,6 +23,7 @@ app.get(
   '/callback',
   authController.getAccessToken,
   authController.getUserInfo,
+  userController.addUser,
   (req, res) => {
     if (process.env.NODE_ENV === 'development') {
       res.redirect('/');

@@ -38,34 +38,34 @@ projectController.verifyProject = (req, res, next) => {
       .catch(err => {
         return next({
           log: 'Error verifying repo',
-          message: { err: 'projectController.verifyProject: error verifying repo'}
+          message: { err: 'projectController.verifyProject: error verifying repo' }
         })
       })
-      
-    }
-      
+
   }
 
-  projectController.addProject = (req, res, next) => {
-    fetch(`https://api.github.com/${res.locals.org}/${res.locals.repo}`)
-      .then(res => res.json())
-      .then(data => {
-        res.locals.id = data.id;
-        res.locals.maintainer = data.owner.id;
-        const params = [res.locals.id, res.locals.maintainer, res.locals.repo, res.locals.description];
-        const query = `INSERT INTO projects (Id, Maintainer_id, Repo_name, Description) VALUES ($1, $2, $3, $4);`;
-        db.query(query, params)
-          .then(data => next())
-          .catch(err => next({
-            log: 'Error adding repo',
-            message: { err: 'projectController.addProject: error adding repo' }
-          }))
-        })
+}
+
+projectController.addProject = (req, res, next) => {
+  fetch(`https://api.github.com/${res.locals.org}/${res.locals.repo}`)
+    .then(res => res.json())
+    .then(data => {
+      res.locals.id = data.id;
+      res.locals.maintainer = data.owner.id;
+      const params = [res.locals.id, res.locals.maintainer, res.locals.repo, res.locals.description];
+      const query = `INSERT INTO projects (Id, Maintainer_id, Repo_name, Description) VALUES ($1, $2, $3, $4);`;
+      db.query(query, params)
+        .then(data => next())
         .catch(err => next({
-          log: 'Error fetching repo',
-          message: { err: 'projectController.addProject: error fetching repo' }
+          log: 'Error adding repo',
+          message: { err: 'projectController.addProject: error adding repo' }
         }))
-  }
+    })
+    .catch(err => next({
+      log: 'Error fetching repo',
+      message: { err: 'projectController.addProject: error fetching repo' }
+    }))
+}
 
 
 module.exports = projectController;
