@@ -24,7 +24,7 @@ router.get('/projects',
 
 router.post('/projects/contribute',
   projectController.bookmarkProject,
-  projectConroller.getContributingProjects,
+  projectController.getContributingProjects,
   (req, res) => res.status(200).json(resl.locale.projects)
 );
 
