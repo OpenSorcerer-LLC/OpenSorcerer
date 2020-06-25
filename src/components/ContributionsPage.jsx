@@ -4,9 +4,10 @@ import Repo from "./Repo";
 
 function MyReposPage() {
   const [repos, setRepos] = useState([]);
+  const [cookies] = useCookies([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/projects/1")
+    fetch(`http://localhost:8080/api/projects/${cookies.user.id}`)
       .then((response) => response.json())
       .then((data) => {
         const { contributer } = data;
