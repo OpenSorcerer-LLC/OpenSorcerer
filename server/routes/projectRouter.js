@@ -3,9 +3,9 @@ const projectController = require('../controllers/projectController');
 
 const router = express.Router();
 
-router.get('/projects',
-  projectController.getProjects,
-  (req, res) => res.status(200).json());
+router.get('/projects/:user_id',
+  projectController.getUserProjects,
+  (req, res) => res.status(200).json(res.locals.projects));
 
 router.get('/project/:project_id',
   projectController.getProjectDetails,
@@ -14,7 +14,11 @@ router.get('/project/:project_id',
 router.post('/project',
   projectController.verifyProject,
   projectController.addProject,
-  (req, res) => res.status(200).json());
+  (req, res) => res.status(200).json({ success: 'Successfully added project' }));
+
+router.get('/projects',
+  projectController.getProjects,
+  (req, res) => res.status(200).json(res.locals.projects));
 
 router.put('/project')
 
