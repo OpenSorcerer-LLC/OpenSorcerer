@@ -148,8 +148,8 @@ projectController.addProject = (req, res, next) => {
   }
 
   projectController.deleteProject = (req, res, next) => {
-    let query = `DELETE FROM projects WHERE Repo_name = $1;`;
-    let params = [req.body.repo];
+    let query = `DELETE FROM projects WHERE Id = $1 AND Maintainer_id = $2;`;
+    let params = [req.body.id, req.cookies.user.id];
     db.query(query, params)
       .then(data => next())
       .catch(err => {
