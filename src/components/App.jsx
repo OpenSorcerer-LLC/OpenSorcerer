@@ -7,7 +7,7 @@ import "../styles/App.css";
 function App() {
   return (
     <>
-      <Menu login={false} />
+      <Menu login={true} />
       <Outro />
       <ReposLayout />
     </>
