@@ -4,6 +4,7 @@ const db = require('../database');
 const projectController = {};
 
 projectController.getProjects = (req, res, next) => {
+  // console.log('cookie', req.cookies.user.id, req.cookies.user.login)
   let query = `SELECT * FROM projects;`;
   db.query(query)
     .then(data => {
@@ -89,10 +90,10 @@ projectController.getProjectDetails = (req, res, next) => {
 }
 
 projectController.verifyProject = (req, res, next) => {
+  console.log('verify', req.cookies)
   const urlParams = req.body.url.split('/');
-  console.log(urlParams)
-  res.locals.username = req.body.username;
-  res.locals.userid = req.body.id;
+  res.locals.username = req.cookies.user.login;
+  res.locals.userid = req.cookies.user.id;
   res.locals.org = urlParams[urlParams.length - 2];
   res.locals.repo = urlParams[urlParams.length - 1];
   res.locals.description = req.body.description;
@@ -101,6 +102,7 @@ projectController.verifyProject = (req, res, next) => {
     console.log('if')
     fetch(`https://api.github.com/orgs/${res.locals.org}/members/${res.locals.username}`)
       .then(data => {
+        console.log(data.status)
         if (data.status === 404) return res.send({ error: "You are not a member of this repo, get lost" });
         else return next();
       })
