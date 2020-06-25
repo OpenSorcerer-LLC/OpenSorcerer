@@ -9,9 +9,9 @@ function MyReposPage() {
     fetch("http://localhost:8080/api/projects/1")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        const { contributer } = data;
         setRepos(
-          data.map((value) => (
+          contributer.map((value) => (
             <Repo
               id={value.id}
               name={value.repo_name}
@@ -24,7 +24,7 @@ function MyReposPage() {
   }, []);
   return (
     <>
-      <ReposLayout repos={repos} addRepo={true} />
+      <ReposLayout repos={repos} />
     </>
   );
 }
