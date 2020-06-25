@@ -16,6 +16,10 @@ router.post('/project',
   projectController.addProject,
   (req, res) => res.status(200).json({ success: 'Successfully added project' }));
 
+router.get('/projects',
+  projectController.getProjects,
+  (req, res) => res.status(200).json(res.locals.projects));
+
 router.put('/project')
 
 router.delete('/project')
