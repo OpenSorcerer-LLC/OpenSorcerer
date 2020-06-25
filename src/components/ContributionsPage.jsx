@@ -4,14 +4,15 @@ import Repo from "./Repo";
 
 function MyReposPage() {
   const [repos, setRepos] = useState([]);
+  const [cookies] = useCookies([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/projects/1")
+    fetch(`http://localhost:8080/api/projects/${cookies.user.id}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        const { contributer } = data;
         setRepos(
-          data.map((value) => (
+          contributer.map((value) => (
             <Repo
               id={value.id}
               name={value.repo_name}
@@ -24,7 +25,7 @@ function MyReposPage() {
   }, []);
   return (
     <>
-      <ReposLayout repos={repos} addRepo={true} />
+      <ReposLayout repos={repos} />
     </>
   );
 }

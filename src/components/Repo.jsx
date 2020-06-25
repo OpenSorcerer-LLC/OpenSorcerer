@@ -33,17 +33,32 @@ function Repo(props) {
       },
       body: JSON.stringify({
         url: props.repoLink,
-        username: "durran",
-        userid: 1,
         description,
       }),
+    });
+  }
+
+  function handleContribute(e) {
+    if (props.repoLink === "" || description === "") {
+      e.preventDefault();
+      return;
+    }
+    fetch(`api/project/${props.id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
   }
   let button;
 
   switch (props.buttonType) {
     case "CONTRIBUTE":
-      button = <span className="repo_button">CONTRIBUTE</span>;
+      button = (
+        <span onClick={handleContribute} className="repo_button">
+          CONTRIBUTE
+        </span>
+      );
       break;
     case "ADD REPO":
       button = (
