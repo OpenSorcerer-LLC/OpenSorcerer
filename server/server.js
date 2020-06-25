@@ -6,7 +6,6 @@ const cookieParser = require('cookie-parser');
 const PORT = process.env.PORT || 3000;
 const authController = require('./controllers/authController');
 const userController = require('./controllers/userController')
-
 const projectRouter = require('./routes/projectRouter');
 
 app.use(express.json());
@@ -23,6 +22,7 @@ app.get(
   authController.getAccessToken,
   authController.getUserInfo,
   userController.addUser,
+  userController.setUserIdCookie,
   (req, res) => {
     if (process.env.NODE_ENV === 'development') {
       res.redirect('/');
