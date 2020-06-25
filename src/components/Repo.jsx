@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Repo.css";
+import { Redirect, useHistory } from "react-router-dom";
 
 /* 
     id: integer,
@@ -14,6 +15,8 @@ import "../styles/Repo.css";
 function Repo(props) {
   const textPlaceHolder = "Please include the description in here.";
   const [description, setDescription] = useState("");
+  const [toMyRepos, setToMyRepos] = useState(false);
+  const history = useHistory();
 
   function handleTextAreaInput(e) {
     if (e.target.value.length < 140) {
@@ -22,6 +25,7 @@ function Repo(props) {
   }
 
   function handleAddRepoLink(e) {
+    e.preventDefault();
     if (props.repoLink === "" || description === "") {
       e.preventDefault();
       return;
@@ -35,6 +39,25 @@ function Repo(props) {
         url: props.repoLink,
         description,
       }),
+    }).then((value) => {
+      console.log("wtf", value);
+      setToMyRepos(true);
+    });
+  }
+
+  function handleDeleteRepo(e) {
+    e.preventDefault();
+    fetch(`api/project`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: `${props.id}`,
+      }),
+    }).then((value) => {
+      history.push("/");
+      history.push("/myrepos");
     });
   }
 
@@ -68,7 +91,11 @@ function Repo(props) {
       );
       break;
     case "DELETE":
-      button = <span className="repo_button">DELETE</span>;
+      button = (
+        <span onClick={handleDeleteRepo} className="repo_button">
+          DELETE
+        </span>
+      );
       break;
     case "UNCONTRIBUTE":
       button = (
@@ -79,28 +106,37 @@ function Repo(props) {
       break;
   }
 
+  let redirect = "";
+  if (toMyRepos) {
+    console.log("redirect");
+    redirect = <Redirect to="/myrepos" />;
+  }
+
   return (
-    <div className="repo">
-      <h2 className="repo_title">{props.name || " "}</h2>
-      <img src="http://localhost:8080/seventagram.png" />
-      {props.input ? (
-        <textarea
-          className="repo_textbox"
-          placeholder={textPlaceHolder}
-          value={description}
-          onChange={handleTextAreaInput}
-        ></textarea>
-      ) : (
-        <>
-          <label className="repo_description">{props.description}</label>
-          <div className="repo_issues_container">
-            <label className="repo_issues_count">80000</label>
-            <label className="repo_issues">Issues</label>
-          </div>
-        </>
-      )}
-      {button}
-    </div>
+    <>
+      {redirect}
+      <div className="repo">
+        <h2 className="repo_title">{props.name || " "}</h2>
+        <img src="http://localhost:8080/seventagram.png" />
+        {props.input ? (
+          <textarea
+            className="repo_textbox"
+            placeholder={textPlaceHolder}
+            value={description}
+            onChange={handleTextAreaInput}
+          ></textarea>
+        ) : (
+          <>
+            <label className="repo_description">{props.description}</label>
+            <div className="repo_issues_container">
+              <label className="repo_issues_count">80000</label>
+              <label className="repo_issues">Issues</label>
+            </div>
+          </>
+        )}
+        {button}
+      </div>
+    </>
   );
 }
 

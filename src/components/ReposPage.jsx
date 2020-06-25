@@ -16,6 +16,7 @@ function ReposPage() {
               name={value.repo_name}
               description={value.description}
               buttonType="CONTRIBUTE"
+              key={`repo-${value.id}`}
             />
           ))
         );

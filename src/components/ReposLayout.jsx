@@ -3,6 +3,7 @@ import "../styles/ReposLayout.css";
 import { Link } from "react-router-dom";
 
 function ReposLayout(props) {
+  console.log("rerendered");
   return (
     <div className="repos_container">
       {props.addRepo ? (

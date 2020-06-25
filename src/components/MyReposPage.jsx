@@ -19,6 +19,7 @@ function MyReposPage() {
               name={value.repo_name}
               description={value.description}
               buttonType="DELETE"
+              key={`repo-${value.id}`}
             />
           ))
         );
