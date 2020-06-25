@@ -4,6 +4,7 @@ const db = require('../database');
 const projectController = {};
 
 projectController.getProjects = (req, res, next) => {
+  // console.log('cookie', req.cookies.user.id, req.cookies.user.login)
   let query = `SELECT * FROM projects;`;
   db.query(query)
     .then(data => {
@@ -89,18 +90,22 @@ projectController.getProjectDetails = (req, res, next) => {
 }
 
 projectController.verifyProject = (req, res, next) => {
-  const urlParams = req.body.url.split('/');
-  console.log(urlParams)
-  res.locals.username = req.body.username;
-  res.locals.userid = req.body.id;
-  res.locals.org = urlParams[urlParams.length - 2];
-  res.locals.repo = urlParams[urlParams.length - 1];
-  res.locals.description = req.body.description;
+  if (req.body.url && req.body.description) { // condition met when adding project
+    const urlParams = req.body.url.split('/');
+    res.locals.org = urlParams[urlParams.length - 2];
+    res.locals.repo = urlParams[urlParams.length - 1];
+    res.locals.description = req.body.description;
+  } else { // condition met when deleting project
+    res.locals.org = req.body.org;
+    res.locals.repo = req.body.repo;
+  }
+  res.locals.username = req.cookies.user.login;
+  res.locals.userid = req.cookies.user.id;
 
   if (res.locals.username !== res.locals.org) {
-    console.log('if')
     fetch(`https://api.github.com/orgs/${res.locals.org}/members/${res.locals.username}`)
       .then(data => {
+        console.log(data.status)
         if (data.status === 404) return res.send({ error: "You are not a member of this repo, get lost" });
         else return next();
       })
@@ -143,7 +148,31 @@ projectController.addProject = (req, res, next) => {
   }
 
   projectController.deleteProject = (req, res, next) => {
-    
+    let query = `DELETE FROM projects WHERE Id = $1 AND Maintainer_id = $2;`;
+    let params = [req.body.id, req.cookies.user.id];
+    db.query(query, params)
+      .then(data => next())
+      .catch(err => {
+        console.log(err);
+        return next({
+          log: 'Error deleting repo',
+          message: { err: 'projectController.deleteProject: error deleting repo' }
+        });
+      })
+  }
+
+  projectController.deleteBookmark = (req, res, next) => {
+    let query = `DELETE FROM Contributing WHERE (Contributor_Id = $1 AND Project_Id = $2);`;
+    let params = [req.cookies.user.id, req.params.projectid];
+    db.query(query, params)
+    .then(data => next())
+    .catch(err => {
+      console.log(err);
+      return next({
+        log: 'Error deleting contribution',
+        message: { err: 'projectController.deleteBookmark: error deleting' }
+      });
+    })
   }
 
 module.exports = projectController;
