@@ -13,9 +13,9 @@ function App(props) {
         <Menu />
         <Outro />
         <Switch>
-          <Route path="/">
-            <ReposLayout />
-          </Route>
+          <Route path="/contributions">sdfsdf</Route>
+          <Route path="/myrepos">durran</Route>
+          <Route path="/"></Route>
         </Switch>
       </Router>
     </>

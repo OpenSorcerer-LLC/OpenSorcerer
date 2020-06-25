@@ -6,7 +6,7 @@ import "../styles/Menu.css";
 function LoginButton() {
   return (
     <a
-      href="https://github.com/login/oauth/authorize?client_id=c7c5ce32daad19cb2f37&redirect_uri=http://localhost:8080/callback"
+      href="https://github.com/login/oauth/authorize?client_id=d7ea0477cd17fdfb8451&redirect_uri=http://localhost:8080/callback"
       className="menu_button menu_button--login"
     >
       LOGIN
@@ -50,7 +50,7 @@ function Menu(props) {
 
   return (
     <div className="menu">
-      {!(cookies.token === undefined || cookies.token.error !== undefined) ? (
+      {cookies.token === undefined || cookies.token.error !== undefined ? (
         <LoginButton />
       ) : (
         <>
