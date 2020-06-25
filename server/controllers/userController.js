@@ -19,7 +19,6 @@ userController.addUser = (req, res, next) => {
 
 userController.setUserIdCookie = (req, res, next) => {
   const { id } = res.locals.userInfo;
-  console.log(id)
   res.cookie('userId', id)
   next()
 }
