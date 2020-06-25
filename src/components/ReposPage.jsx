@@ -6,7 +6,7 @@ function ReposPage() {
   const [repos, setRepos] = useState([]);
 
   useEffect(() => {
-    fetch("/api/projects")
+    fetch("http://localhost:8080/api/projects")
       .then((response) => response.json())
       .then((data) => {
         setRepos(

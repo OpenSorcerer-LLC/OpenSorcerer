@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Menu from "./Menu";
 import Outro from "./Outro";
 import ReposPage from "./ReposPage";
+import RepoAddPage from "./RepoAddPage";
+import MyReposPage from "./MyReposPage";
+import ContributionsPage from "./ContributionsPage";
 import "../styles/App.css";
 
 function App(props) {
@@ -13,11 +16,15 @@ function App(props) {
         <Menu />
         <Outro />
         <Switch>
-          <Route path="/contributions"></Route>
-          <Roate path="/myrepos/add">
+          <Route path="/contributions">
+            <ContributionsPage />
+          </Route>
+          <Route path="/myrepos/add">
             <RepoAddPage />
-          </Roate>
-          <Route path="/myrepos"></Route>
+          </Route>
+          <Route path="/myrepos">
+            <MyReposPage />
+          </Route>
           <Route path="/">
             <ReposPage />
           </Route>
