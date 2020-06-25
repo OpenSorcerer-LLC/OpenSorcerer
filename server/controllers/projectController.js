@@ -39,13 +39,15 @@ projectController.getUserProjects = (req, res, next) => {
 
 projectController.getContributingProjects = (req, res, next) => {
   let query = `SELECT contributing.*, people.Github_handle, projects.Maintainer_id, projects.repo_name, projects.Description, projects.Created_At
-    FROM contributing WHERE Contributor_id = $1
-    LEFT JOIN people ON people.Id = contributing.Contributor_id
-    LEFT JOIN projects ON projects.Id = contributing.project_id;`;
+    FROM contributing
+    LEFT JOIN people ON (people.Id = contributing.Contributor_id)
+    LEFT JOIN projects ON (projects.Id = contributing.project_id)
+    WHERE (Contributor_id = $1);`;
   let params = [req.params.user_id];
   db.query(query, params)
     .then(data => {
       res.locals.projects.contributor = data.rows;
+      console.log(res.locals.projects)
       return next();
     })
     .catch(err => {
@@ -138,6 +140,10 @@ projectController.addProject = (req, res, next) => {
       log: 'Error fetching repo',
       message: { err: 'projectController.addProject: error fetching repo' }
     }))
+  }
+
+  projectController.deleteProject = (req, res, next) => {
+    
   }
 
 module.exports = projectController;
