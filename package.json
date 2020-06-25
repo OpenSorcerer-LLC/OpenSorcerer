@@ -11,7 +11,9 @@
     "nodemon": "^2.0.4",
     "pg": "^8.2.1",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-cookie": "^4.0.3",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "url-loader": "^4.1.0",

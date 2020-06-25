@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import "../styles/Repo.css";
 
-/* repoTitle: string, description: string, buttonTitle: string, buttonCallback: function, input: boolean */
+/* 
+    repoTitle: string, 
+    description: string, 
+    buttonTitle: string, 
+    buttonCallback: function, 
+    input: boolean 
+    contributed: boolean
+*/
 function Repo(props) {
   const textPlaceHolder = "Please include the description in here.";
   const [description, setDescription] = useState("");
