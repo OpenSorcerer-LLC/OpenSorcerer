@@ -4,7 +4,7 @@ const authController = {};
 authController.getAccessToken = (req, res, next) => {
   const code = req.query.code;
   fetch(
-    `https://github.com/login/oauth/access_token?client_id=d7ea0477cd17fdfb8451&client_secret=e629a4fd13b9dc3445da7c08d57158f3d02765df&code=${code}`,
+    `https://github.com/login/oauth/access_token?client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&code=${code}`,
     {
       method: 'POST',
       headers: {

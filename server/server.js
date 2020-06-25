@@ -7,7 +7,6 @@ const PORT = process.env.PORT || 3000;
 const authController = require('./controllers/authController');
 const userController = require('./controllers/userController')
 
-
 const projectRouter = require('./routes/projectRouter');
 
 app.use(express.json());

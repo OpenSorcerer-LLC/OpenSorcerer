@@ -3,10 +3,13 @@ import "../styles/Menu.css";
 
 function LoginButton() {
   return (
-    <span className="menu_button menu_button--login">
+    <a
+      href="https://github.com/login/oauth/authorize?client_id=d7ea0477cd17fdfb8451&redirect_uri=http://localhost:8080/callback"
+      className="menu_button menu_button--login"
+    >
       LOGIN
       <img className="menu_button_icon" src="icon_github.png" />
-    </span>
+    </a>
   );
 }
 
@@ -43,12 +46,12 @@ function Menu(props) {
       {props.login ? (
         <LoginButton />
       ) : (
-        <>
-          <ContributionButton />
-          <MyReposButton />
-          <ReposButton />
-        </>
-      )}
+          <>
+            <ContributionButton />
+            <MyReposButton />
+            <ReposButton />
+          </>
+        )}
     </div>
   );
 }
