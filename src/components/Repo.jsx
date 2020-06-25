@@ -13,7 +13,7 @@ function Repo(props) {
 
   return (
     <div className="repo">
-      <h2 className="repo_title">React-Native</h2>
+      <h2 className="repo_title">D3</h2>
       <img src="seventagram.png" />
       {props.input ? (
         <textarea

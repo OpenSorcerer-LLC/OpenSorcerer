@@ -1,7 +1,7 @@
 import React from "react";
 import Menu from "./Menu";
 import Outro from "./Outro";
-import Repos from "./Repos";
+import ReposLayout from "./ReposLayout";
 import "../styles/App.css";
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <>
       <Menu login={false} />
       <Outro />
-      <Repos />
+      <ReposLayout />
     </>
   );
 }

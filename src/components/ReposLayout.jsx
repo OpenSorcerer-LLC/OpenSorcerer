@@ -1,8 +1,8 @@
 import React from "react";
 import Repo from "./Repo";
-import "../styles/Repos.css";
+import "../styles/ReposLayout.css";
 
-function Repos(props) {
+function ReposLayout(props) {
   return (
     <div className="repos_container">
       <div className="repos_grid">
@@ -15,4 +15,4 @@ function Repos(props) {
   );
 }
 
-export default Repos;
+export default ReposLayout;

@@ -4,7 +4,7 @@
   left: 40px;
   border: none;
   font-size: 17px;
-  height: 150px;
+  height: 140px;
   font-weight: bold;
 }
 
@@ -13,8 +13,8 @@
   top: 122px;
   left: 40px;
   display: inline-block;
-  font-size: 17px;
-  height: 154px;
+  font-size: 19px;
+  height: 140px;
   width: 215px;
   border: none;
   font-weight: bold;
@@ -39,7 +39,7 @@
 .repo_title {
   width: 299px;
   text-align: center;
-  color: rgb(255, 0, 255);
+  color: rgb(155, 69, 241);
 }
 
 .repo_issues_count {
@@ -63,7 +63,7 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  top: 280px;
+  top: 265px;
   left: 52px;
   width: 190px;
 }
