@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReposLayout from "./ReposLayout";
 import Repo from "./Repo";
+import { useCookies } from "react-cookie";
 
 function MyReposPage() {
   const [repos, setRepos] = useState([]);
@@ -18,6 +19,7 @@ function MyReposPage() {
               name={value.repo_name}
               description={value.description}
               buttonType="UNCONTRIBUTE"
+              key={`repo-${value.id}`}
             />
           ))
         );
