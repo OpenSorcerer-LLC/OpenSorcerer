@@ -3,10 +3,13 @@ import "../styles/Menu.css";
 
 function LoginButton() {
   return (
-    <span className="menu_button menu_button--login">
+    <a
+      href="https://github.com/login/oauth/authorize?client_id=c7c5ce32daad19cb2f37&redirect_uri=http://localhost:8080/callback"
+      className="menu_button menu_button--login"
+    >
       LOGIN
       <img className="menu_button_icon" src="icon_github.png" />
-    </span>
+    </a>
   );
 }
 

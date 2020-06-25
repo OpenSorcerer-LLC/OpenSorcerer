@@ -1,0 +1,15 @@
+.repos_container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 300px;
+  width: 100%;
+}
+
+.repos_grid {
+  display: grid;
+  grid-template-columns: 299px 299px 299px;
+  grid-auto-rows: 343px;
+  grid-column-gap: 50px;
+  grid-row-gap: 25px;
+}

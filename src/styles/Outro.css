@@ -1,24 +1,28 @@
 .outro {
   position: absolute;
   width: 627px;
+  height: 248px;
   left: 30%;
 }
 .outro_title {
+  position: absolute;
   font-style: italic;
   font-weight: bold;
   color: rgb(255, 0, 255);
   font-size: 90px;
   margin: 0px;
-  transform: translateX(-11px) translateY(-30px) rotate(0.5deg);
+  top: 130px;
 }
 
 .outro_big_star {
-  transform: translateY(-28px) translateX(302px);
+  position: absolute;
+  left: 305px;
 }
-
+/*
 .outro_small_star {
   transform: translateY(-8px) translateX(302px);
 }
 .outro_mascot {
   transform: translateX(297px) translateY(25px);
 }
+*/
